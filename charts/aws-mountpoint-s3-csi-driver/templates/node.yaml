@@ -16,6 +16,8 @@ spec:
         app: s3-csi-node
         {{- include "aws-mountpoint-s3-csi-driver.labels" . | nindent 8 }}
     spec:
+      # Use host PID namespace, such that opened FUSE device allows MP to be given PID for any process accessing the FS
+      hostPID: true
       nodeSelector:
         kubernetes.io/os: linux
         {{- with .Values.node.nodeSelector }}
