@@ -1,0 +1,7 @@
+---
+version: 2
+updates:
+  - package-ecosystem: "helm"
+    directory: "charts/aws-mountpoint-s3-csi-driver/"
+    schedule:
+      interval: "weekly"
