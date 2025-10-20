@@ -1,6 +1,21 @@
 ---
 version: 2
 updates:
+  - package-ecosystem: "gomod"
+    directories:
+      - "./"
+      - "./tests/e2e-kubernetes"
+    schedule:
+      interval: "monthly"
+    # ensure updates are batched into one PR
+    groups:
+      go-dependencies:
+        patterns:
+          - "*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
   - package-ecosystem: "helm"
     directory: "charts/aws-mountpoint-s3-csi-driver/"
     schedule:
