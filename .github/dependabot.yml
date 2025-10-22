@@ -12,11 +12,15 @@ updates:
       go-dependencies:
         patterns:
           - "*"
+    ignore:
+      # Only allow patch updates for pre-1.0 versions
+      - dependency-name: "*"
+        versions: ["< 1.0"]
+        update-types: ["version-update:semver-minor", "version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
+    # Use limit of 1 PR, checked daily, to handle rush of updates.
+    # TODO: Remove, update to weekly once the wave is over.
+    open-pull-requests-limit: 1
     schedule:
-      interval: "weekly"
-  - package-ecosystem: "helm"
-    directory: "charts/aws-mountpoint-s3-csi-driver/"
-    schedule:
-      interval: "weekly"
+      interval: "daily"
